@@ -122,7 +122,7 @@ foreach ($paginas as $key => $pagina) {
                            <th> TIPO DE ENTRADA </th>
                            <th style="text-align:center"> VALOR </th>
                           
-                           <th style="text-align: center; width:200px"> AÇÃO </th>
+                           <th style="text-align: center; width:300px"> AÇÃO </th>
                            
                         </tr>
                      </thead>

@@ -134,9 +134,8 @@ $usuario = $usuariologado ?
                     }
 
                     ?>" style="display: none;">
-          <a href="pages/mecanicos/mecanico-list.php" class="nav-link">Mecânicos</a>
+          <a href="pages/comissao/comissao-list.php" class="nav-link">Comissões</a>
         </li>
-
 
 
         <li class="<?php

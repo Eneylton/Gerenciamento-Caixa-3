@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Dez-2021 às 15:00
+-- Tempo de geração: 28-Dez-2021 às 20:41
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 7.3.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_caixa2`
+-- Banco de dados: `db_caixa3`
 --
 
 -- --------------------------------------------------------
@@ -61,25 +61,7 @@ CREATE TABLE `caixa` (
 --
 
 INSERT INTO `caixa` (`id`, `data`, `valor`, `forma_pagamento_id`, `usuarios_id`) VALUES
-(28, '2021-12-01 11:43:32', '418.00', 2, 0),
-(29, '2021-12-03 11:33:00', '378.00', 2, 0),
-(30, '2021-12-04 11:28:18', '883.00', 2, 0),
-(31, '2021-12-06 11:18:39', '1928.00', 2, 0),
-(32, '2021-12-07 12:00:14', '403.00', 2, 0),
-(33, '2021-12-08 12:39:20', '980.00', 2, 0),
-(34, '2021-12-09 11:37:59', '895.00', 2, 0),
-(35, '2021-12-10 12:00:55', '537.00', 2, 0),
-(36, '2021-12-11 11:21:08', '223.00', 2, 0),
-(37, '2021-12-13 11:30:46', '268.00', 2, 0),
-(38, '2021-12-14 11:31:15', '313.00', 2, 0),
-(39, '2021-12-15 11:12:38', '356.00', 2, 0),
-(40, '2021-12-16 11:56:39', '321.00', 2, 0),
-(41, '2021-12-17 11:16:53', '274.00', 2, 0),
-(42, '2021-12-18 11:20:38', '370.00', 2, 0),
-(43, '2021-12-20 11:20:15', '215.00', 2, 0),
-(44, '2021-12-21 11:29:58', '217.00', 2, 0),
-(45, '2021-12-22 11:57:40', '0.00', 2, 0),
-(46, '2021-12-23 11:29:29', '130.00', 2, 0);
+(49, '2021-12-28 13:43:00', '120.00', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -163,6 +145,36 @@ INSERT INTO `catdespesas` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `comissao`
+--
+
+CREATE TABLE `comissao` (
+  `id` int(11) NOT NULL,
+  `data` timestamp NULL DEFAULT current_timestamp(),
+  `tipo` int(11) DEFAULT NULL,
+  `placa` varchar(45) DEFAULT NULL,
+  `descricao` varchar(225) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `veiculo` varchar(100) DEFAULT NULL,
+  `mecanicos_id` int(11) NOT NULL,
+  `caixa_id` int(11) NOT NULL,
+  `catdespesas_id` int(11) NOT NULL,
+  `valor` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `comissao`
+--
+
+INSERT INTO `comissao` (`id`, `data`, `tipo`, `placa`, `descricao`, `status`, `veiculo`, `mecanicos_id`, `caixa_id`, `catdespesas_id`, `valor`) VALUES
+(1, '2021-12-28 19:30:00', 0, 'hot-2020', 'oook', 1, 'vera cruz', 2, 49, 1, '10.00'),
+(2, '2021-12-28 19:30:00', 0, 'hot-2020', 'Pagar comissão hoje', 1, 'TRACKER', 1, 49, 1, '17.50'),
+(3, '2021-12-28 19:30:00', 0, 'how-2528', '', 1, 'SANDERO', 10, 49, 18, '40.00'),
+(4, '2021-12-28 19:29:00', 0, 'how-2528', '', 1, 'FORD KA', 16, 49, 33, '40.00');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `extra`
 --
 
@@ -234,161 +246,10 @@ CREATE TABLE `maobra` (
 --
 
 INSERT INTO `maobra` (`id`, `data`, `cartao`, `dinheiro`, `debito`, `pix`, `transferencia`, `tipo`, `veiculo`, `placa`, `descricao`, `status`, `mecanicos_id`, `caixa_id`, `catdespesas_id`) VALUES
-(131, '2021-12-01 18:36:31', '0.00', '0.00', '0.00', '100.00', '0.00', 0, 'JETTA', 'NENHUM', '', 0, 6, 28, 1),
-(132, '2021-12-01 19:00:03', NULL, NULL, '100.00', NULL, NULL, 0, 'PRISMA', 'OJZ-3082', '', 0, 3, 28, 27),
-(133, '2021-12-01 19:25:12', '50.00', NULL, NULL, NULL, NULL, 0, 'CRUZE', 'nao informado', '', 0, 7, 28, 18),
-(134, '2021-12-01 19:28:30', '37.50', '37.50', NULL, NULL, NULL, 0, 'gol', 'NÃO INFORMADO', '', 0, 9, 28, 27),
-(135, '2021-12-01 19:31:24', '40.00', '0.00', '0.00', '0.00', '0.00', 0, 'onix', 'pto9991', '', 0, 8, 28, 1),
-(137, '2021-12-03 17:17:47', NULL, '25.00', NULL, NULL, NULL, 0, 'SANDERO', 'OJE 9844', '', 0, 1, 29, 27),
-(138, '2021-12-03 18:41:00', NULL, NULL, '450.00', NULL, NULL, 0, 'BLESER', 'OXR 4911', '', 0, 6, 29, 27),
-(139, '2021-12-04 13:21:53', NULL, '25.00', NULL, NULL, NULL, 0, 'bora', 'nhs 3964', '', 0, 4, 30, 27),
-(140, '2021-12-04 14:00:08', '125.00', NULL, NULL, NULL, NULL, 0, 'palio', 'NÃO INFORMADO', '', 0, 7, 30, 27),
-(141, '2021-12-04 14:28:14', NULL, NULL, '100.00', NULL, NULL, 0, 'hrv ', 'NÃO INFORMADO', '', 0, 6, 30, 27),
-(142, '2021-12-04 15:13:13', '37.50', NULL, '37.50', NULL, NULL, 0, 'FIELSTA', 'OJK-5160', '', 0, 8, 30, 27),
-(143, '2021-12-04 15:20:36', '50.00', NULL, NULL, '50.00', NULL, 0, 'FORD FIESTA', 'OJF8241', '', 0, 1, 30, 27),
-(144, '2021-12-04 15:50:04', NULL, NULL, NULL, '75.00', NULL, 0, 'SANDERO', 'NÃO INFORMADO', '', 0, 7, 30, 27),
-(145, '2021-12-06 12:57:47', NULL, NULL, NULL, '25.00', NULL, 0, 'UP', 'PSO 3068', 'PAGO LOJA', 0, 3, 31, 27),
-(146, '2021-12-06 13:29:31', '75.00', NULL, NULL, NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 14, 31, 27),
-(147, '2021-12-06 14:06:04', '50.00', NULL, '50.00', NULL, NULL, 0, 'CLASSIC', 'NMU 3566', '', 0, 5, 31, 27),
-(148, '2021-12-06 18:00:01', NULL, '50.00', NULL, NULL, NULL, 0, 'ECO  SPORT', 'NÃO INFORMADO', '', 0, 14, 31, 27),
-(149, '2021-12-06 21:03:24', NULL, '100.00', NULL, NULL, NULL, 0, 'SPIN', 'NÃO INFORMADO', '', 0, 7, 31, 27),
-(150, '2021-12-06 21:06:35', '100.00', NULL, NULL, NULL, NULL, 0, 'SPIN', 'NÃO INFORMADO', '', 0, 7, 31, 27),
-(151, '2021-12-07 12:37:36', '150.00', '0.00', '0.00', '0.00', '0.00', 0, 'DOBLO', 'QOX  1J13', '', 0, 1, 32, 1),
-(152, '2021-12-07 14:11:15', '75.00', NULL, NULL, NULL, NULL, 0, 'FRONTIER', 'NÃO INFORMADO', '', 0, 2, 32, 27),
-(153, '2021-12-07 15:03:33', '50.00', NULL, NULL, NULL, NULL, 0, 'FIESTA', 'OIX 1032', '', 0, 5, 32, 27),
-(157, '2021-12-07 18:46:35', NULL, '100.00', NULL, NULL, NULL, 0, 'FOX', 'NÃO INFORMADO', '', 0, 11, 32, 27),
-(158, '2021-12-07 18:50:02', NULL, NULL, '75.00', NULL, NULL, 0, 'CELTA', 'NÃO INFORMADO', '', 0, 8, 32, 27),
-(159, '2021-12-07 20:22:26', '75.00', NULL, NULL, NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 5, 32, 27),
-(160, '2021-12-07 20:28:29', NULL, NULL, NULL, '130.00', NULL, 0, 'RENEGADE', 'NÃO INFORMADO', 'PAGO PIX LOJA', 0, 9, 32, 28),
-(162, '2021-12-07 21:00:07', NULL, '90.00', NULL, NULL, NULL, 0, 'GOL', 'OJJ 2863', '', 0, 4, 32, 27),
-(163, '2021-12-07 21:02:23', '50.00', NULL, NULL, NULL, NULL, 0, 'UNO', 'NÃO INFORMADO', '', 0, 3, 32, 27),
-(164, '2021-12-07 21:05:11', '100.00', NULL, NULL, NULL, NULL, 0, 'POLO', 'NÃO INFORMADO', 'PAGO NA MAQUINA JEFFERSON.', 0, 7, 32, 27),
-(165, '2021-12-07 21:07:58', '50.00', NULL, NULL, NULL, NULL, 0, 'UNO', 'NÃO INFORMADO', 'PASSADA NA MAQUINA JEFFERSON', 0, 10, 32, 27),
-(166, '2021-12-07 21:15:30', '125.00', NULL, NULL, NULL, NULL, 0, 'CLIO', 'NÃO INFORMADO', '', 0, 1, 32, 27),
-(167, '2021-12-07 21:24:10', '25.00', NULL, NULL, NULL, NULL, 0, 'ONIX', 'NÃO INFORMADO', '', 0, 1, 32, 27),
-(168, '2021-12-07 21:29:39', NULL, NULL, '15.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 8, 32, 11),
-(169, '2021-12-08 12:56:49', NULL, NULL, '75.00', NULL, NULL, 0, 'HILLUX', 'NÃO INFORMADO', '', 0, 2, 33, 27),
-(170, '2021-12-08 13:46:25', '100.00', NULL, NULL, NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 6, 33, 40),
-(171, '2021-12-08 14:49:16', NULL, NULL, '40.00', NULL, NULL, 0, 'COBOLT', 'NÃO INFORMADO', '', 0, 8, 33, 27),
-(172, '2021-12-08 16:31:56', '50.00', NULL, NULL, NULL, NULL, 0, 'GOLF', 'NÃO INFORMADO', '', 0, 7, 33, 27),
-(173, '2021-12-09 11:39:08', '150.00', NULL, NULL, NULL, NULL, 0, 'ONIX', 'psy 8769', '', 0, 11, 34, 27),
-(174, '2021-12-09 13:49:31', '75.00', NULL, NULL, NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 6, 34, 27),
-(175, '2021-12-09 16:59:49', '50.00', NULL, NULL, NULL, NULL, 0, 'FORD KA', 'NÃO INFORMADO', '', 0, 4, 34, 27),
-(176, '2021-12-09 18:08:03', '50.00', NULL, NULL, NULL, NULL, 0, 'FIESTA', 'NÃO INFORMADO', '', 0, 14, 34, 3),
-(183, '2021-12-09 19:20:05', NULL, '30.00', NULL, NULL, NULL, 0, 'SW4', 'NÃO INFORMADO', '', 0, 14, 34, 23),
-(185, '2021-12-09 19:31:17', NULL, '35.00', NULL, NULL, NULL, 0, 'STRADA', 'NÃO INFORMADO', '', 0, 7, 34, 27),
-(186, '2021-12-09 20:18:51', NULL, NULL, '300.00', NULL, NULL, 0, 'PRISMA', 'PSM 9964', '', 0, 5, 34, 27),
-(187, '2021-12-09 20:34:57', '75.00', '0.00', '0.00', '0.00', '0.00', 0, 'KA', 'NÃO INFORMADO', '', 0, 8, 34, 1),
-(189, '2021-12-09 21:11:21', NULL, NULL, NULL, '25.00', NULL, 0, 'UNO', 'NÃO INFORMADO', 'PG PIX LOJA', 0, 4, 34, 27),
-(192, '2021-12-09 21:27:31', NULL, '90.00', NULL, NULL, NULL, 0, 'NENHUM', 'NENHUM', '', 0, 14, 34, 15),
-(193, '2021-12-09 21:29:43', NULL, '50.00', NULL, NULL, NULL, 0, 'DUSTER', 'NÃO INFORMADO', '', 0, 1, 34, 27),
-(194, '2021-12-09 21:31:53', NULL, NULL, '50.00', NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 3, 34, 27),
-(195, '2021-12-09 21:34:48', '25.00', NULL, NULL, NULL, NULL, 0, 'GOL', 'NÃO INFORMADO', '', 0, 3, 34, 27),
-(196, '2021-12-08 14:49:15', NULL, NULL, '75.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', NULL, 0, 15, 33, 15),
-(197, '2021-12-10 17:24:16', '20.00', NULL, NULL, NULL, NULL, 0, 'MOBI\'', 'NÃO INFORMADO', '', 0, 11, 35, 27),
-(198, '2021-12-10 17:25:43', NULL, NULL, '100.00', NULL, NULL, 0, 'CROSFOX', 'NWX 7626', '', 0, 1, 35, 27),
-(199, '2021-12-10 19:04:10', '50.00', NULL, NULL, NULL, NULL, 0, 'SIENA', 'NÃO INFORMADO', '', 0, 10, 35, 27),
-(201, '2021-12-10 20:16:50', '975.00', '0.00', '0.00', '0.00', '0.00', 0, 'C3', 'NÃO INFORMADO', '', 0, 10, 35, 1),
-(202, '2021-12-10 20:19:47', NULL, NULL, '150.00', NULL, NULL, 0, 'DUSTER', 'NÃO INFORMADO', '', 0, 5, 35, 23),
-(203, '2021-12-10 20:25:27', NULL, '50.00', NULL, NULL, NULL, 0, 'MARCH', 'PSD 1F96', '', 0, 3, 35, 23),
-(204, '2021-12-10 21:24:10', NULL, NULL, '45.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 15, 35, 11),
-(205, '2021-12-10 21:27:31', NULL, NULL, '75.00', NULL, NULL, 0, 'DUSTER', 'NÃO INFORMADO', '', 0, 8, 35, 18),
-(206, '2021-12-11 14:47:56', '100.00', NULL, NULL, NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 5, 36, 15),
-(207, '2021-12-11 14:55:51', NULL, NULL, '25.00', NULL, NULL, 0, 'KA', 'NÃO INFORMADO', '', 0, 10, 36, 28),
-(208, '2021-12-11 15:59:11', NULL, NULL, '40.00', NULL, NULL, 0, 'GOL', 'NÃO INFORMADO', '', 0, 14, 36, 18),
-(209, '2021-12-11 16:33:02', NULL, NULL, '50.00', NULL, NULL, 0, 'KA', '', '', 0, 6, 36, 18),
-(210, '2021-12-11 16:35:33', '725.00', NULL, NULL, NULL, NULL, 0, 'ECOSPORT', 'NÃO INFORMADO', '', 0, 7, 36, 18),
-(211, '2021-12-13 12:05:02', NULL, '50.00', NULL, NULL, NULL, 0, 's10', 'ptl4834', '', 0, 15, 37, 18),
-(212, '2021-12-13 13:51:40', NULL, NULL, '50.00', NULL, NULL, 0, 'LOGAN', 'NÃO INFORMADO', '', 0, 11, 37, 15),
-(213, '2021-12-13 14:46:57', '25.00', NULL, NULL, NULL, NULL, 0, 'SIENA', 'NÃO INFORMADO', '', 0, 11, 37, 27),
-(214, '2021-12-13 14:47:38', '25.00', NULL, NULL, NULL, NULL, 0, 'SIENA', 'NÃO INFORMADO', '', 0, 11, 37, 27),
-(215, '2021-12-13 19:24:57', '40.00', NULL, NULL, NULL, NULL, 0, 'SANDERO', 'NÃO INFORMADO', '', 0, 10, 37, 27),
-(217, '2021-12-13 20:04:07', '75.00', NULL, NULL, NULL, NULL, 0, 'C3', 'NÃO INFORMADO', '', 0, 4, 37, 27),
-(219, '2021-12-13 20:59:19', NULL, NULL, '25.00', NULL, NULL, 0, 'UNO', 'OXU1006', '', 0, 16, 37, 27),
-(220, '2021-12-13 21:37:55', '75.00', NULL, NULL, NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 9, 37, 27),
-(221, '2021-12-13 21:39:31', '115.00', NULL, NULL, NULL, NULL, 0, 'PUNTO', 'NÃO INFORMADO', '', 0, 8, 37, 27),
-(222, '2021-12-13 21:40:45', '100.00', NULL, NULL, NULL, NULL, 0, 'VERSA', 'NÃO INFORMADO', '', 0, 10, 37, 27),
-(223, '2021-12-13 21:43:35', NULL, '75.00', NULL, NULL, NULL, 0, 'ONIX', 'NÃO INFORMADO', '', 0, 6, 37, 27),
-(224, '2021-12-11 11:54:46', NULL, NULL, '75.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 15, 36, 15),
-(225, '2021-12-14 12:51:36', '125.00', NULL, NULL, NULL, NULL, 0, 'DOBLO', 'PTM 3D68', '', 0, 8, 38, 27),
-(226, '2021-12-14 13:16:57', NULL, NULL, '25.00', NULL, NULL, 0, 'HONDA CITY', 'PTL 4647', '', 0, 11, 38, 18),
-(227, '2021-12-14 14:29:43', '125.00', NULL, NULL, NULL, NULL, 0, 'VOYAGE', 'nmr 5825', '', 0, 10, 38, 27),
-(228, '2021-12-14 16:33:53', '125.00', NULL, NULL, NULL, NULL, 0, 'PICASSO', 'OSB 1C11', '', 0, 2, 38, 15),
-(229, '2021-12-14 16:34:49', NULL, '25.00', NULL, NULL, NULL, 0, 'CLASSIC', 'NÃO INFORMADO', '', 0, 11, 38, 18),
-(230, '2021-12-14 17:33:20', NULL, NULL, '25.00', NULL, NULL, 0, 'ARGO', 'NÃO INFORMADO', '', 0, 15, 38, 18),
-(233, '2021-12-14 19:24:23', NULL, NULL, '25.00', NULL, NULL, 0, 'PEGEOT', 'NÃO INFORMADO', '', 0, 2, 38, 27),
-(234, '2021-12-14 20:06:06', '150.00', NULL, NULL, NULL, NULL, 0, 'VERSA', 'NÃO INFORMADO', '', 0, 4, 38, 27),
-(235, '2021-12-14 20:42:13', '150.00', NULL, NULL, NULL, NULL, 0, 'VOYAGE', 'NWW 0355', '', 0, 5, 38, 27),
-(236, '2021-12-14 20:43:35', NULL, NULL, '250.00', NULL, NULL, 0, 'HILLUX', 'NÃO INFORMADO', '', 0, 2, 38, 27),
-(238, '2021-12-14 21:07:57', '25.00', NULL, NULL, NULL, NULL, 0, 'MONTANA', 'NÃO INFORMADO', '', 0, 11, 38, 27),
-(239, '2021-12-14 21:34:17', NULL, NULL, '100.00', NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 10, 38, 18),
-(240, '2021-12-14 21:38:30', NULL, NULL, '75.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 14, 38, 18),
-(241, '2021-12-14 21:46:06', NULL, NULL, '25.00', NULL, NULL, 0, 'HB20', 'NÃO INFORMADO', '', 0, 2, 38, 18),
-(246, '2021-12-15 12:16:26', '375.00', NULL, '375.00', NULL, NULL, 0, 'PRISMA', 'NÃO INFORMADO', '', 0, 3, 39, 27),
-(247, '2021-12-15 12:21:38', '150.00', NULL, '150.00', NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 9, 39, 27),
-(251, '2021-12-15 17:20:42', NULL, NULL, '35.00', NULL, NULL, 0, 'TUCSON', 'MXG 9A60', '', 0, 8, 39, 27),
-(254, '2021-12-15 17:53:18', '150.00', NULL, NULL, NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 6, 39, 27),
-(257, '2021-12-15 20:56:01', '125.00', NULL, NULL, NULL, NULL, 0, 'SANDERO', 'NÃO INFORMADO', '', 0, 10, 39, 27),
-(258, '2021-12-15 20:57:17', NULL, '35.00', NULL, NULL, NULL, 0, 'FIESTA', 'NÃO INFORMADO', '', 0, 7, 39, 27),
-(259, '2021-12-15 20:59:08', NULL, NULL, '75.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 14, 39, 15),
-(260, '2021-12-16 13:32:20', NULL, NULL, '25.00', NULL, NULL, 0, 'ECOSPORT', 'NÃO INFORMADO', 'PAGO PIX LOJA', 0, 8, 40, 27),
-(261, '2021-12-16 17:24:19', NULL, NULL, '25.00', NULL, NULL, 0, 'CERATTO', 'nxo 1955', '', 0, 11, 40, 18),
-(262, '2021-12-16 20:16:35', '75.00', NULL, NULL, NULL, NULL, 0, 'HILLUX', 'NÃO INFORMADO', '', 0, 2, 40, 27),
-(263, '2021-12-16 20:17:29', NULL, NULL, '125.00', NULL, NULL, 0, 'DUSTER', 'NÃO INFORMADO', '', 0, 10, 40, 27),
-(264, '2021-12-16 21:10:13', '100.00', NULL, '100.00', NULL, NULL, 0, 'FIESTA', 'OWJ 9292', '', 0, 3, 40, 27),
-(265, '2021-12-16 21:31:47', NULL, NULL, '75.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 15, 40, 15),
-(266, '2021-12-17 13:34:32', NULL, '25.00', NULL, NULL, NULL, 0, 'UNO', 'NÃO INFORMADO', '', 0, 7, 41, 27),
-(267, '2021-12-17 18:40:39', NULL, '100.00', NULL, NULL, NULL, 0, 'AGILE', 'NÃO INFORMADO', '', 0, 9, 41, 27),
-(269, '2021-12-17 19:12:35', '100.00', NULL, NULL, NULL, NULL, 0, 'COBOLT', 'PSD 6123', '', 0, 16, 41, 27),
-(270, '2021-12-17 20:14:00', '25.00', NULL, NULL, NULL, NULL, 0, 'SANDERO', 'NÃO INFORMADO', '', 0, 2, 41, 27),
-(271, '2021-12-17 20:23:36', NULL, NULL, '75.00', NULL, NULL, 0, 'KIWD', 'NÃO INFORMADO', '', 0, 5, 41, 27),
-(272, '2021-12-17 20:59:04', NULL, NULL, '90.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 15, 41, 15),
-(273, '2021-12-17 21:00:06', NULL, NULL, '200.00', NULL, NULL, 0, 'RENEGADE', 'NÃO INFORMADO', '', 0, 2, 41, 27),
-(274, '2021-12-18 13:16:54', '75.00', NULL, NULL, NULL, NULL, 0, 'ONI XJOY', 'QWS 9G65', '', 0, 7, 42, 27),
-(275, '2021-12-18 13:29:28', NULL, '75.00', NULL, NULL, NULL, 0, 'HR', 'NÃO INFORMADO', '', 0, 15, 42, 27),
-(277, '2021-12-18 14:11:06', '35.00', NULL, NULL, NULL, NULL, 0, 'S10', '', '', 0, 3, 42, 27),
-(278, '2021-12-20 14:36:31', NULL, NULL, NULL, '100.00', NULL, 0, 'VOYAGE', 'NÃO INFORMADO', 'PAGO  PIX LOJA ', 0, 10, 43, 27),
-(279, '2021-12-20 16:36:11', '0.00', '0.00', '50.00', '0.00', '0.00', 0, 'CELTA', 'NÃO INFORMADO', '', 0, 7, 43, 1),
-(280, '2021-12-20 19:39:16', '87.50', NULL, '87.50', NULL, NULL, 0, 'ECOSPORT', 'QJQ 8425', '', 0, 8, 43, 27),
-(281, '2021-12-20 19:43:44', NULL, '200.00', NULL, NULL, NULL, 0, 'TORO', 'NÃO INFORMADO', '', 0, 10, 43, 18),
-(282, '2021-12-20 21:19:25', NULL, NULL, NULL, '142.50', NULL, 0, 'PALIO', 'OIX 1243', 'PAGO PIX LOJA', 0, 2, 43, 27),
-(283, '2021-12-20 21:22:12', NULL, NULL, '25.00', NULL, NULL, 0, 'PEGEOT', 'NÃO INFORMADO', '', 0, 3, 43, 27),
-(284, '2021-12-20 21:24:59', NULL, NULL, '135.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 15, 43, 15),
-(285, '2021-12-21 12:04:49', '50.00', NULL, NULL, NULL, NULL, 0, 'PALIO', 'OJG 2483', '', 0, 8, 44, 27),
-(286, '2021-12-18 13:29:28', '0.00', NULL, '25.00', NULL, NULL, 0, 'hb20', 'OJG 2007', NULL, 0, 16, 42, 27),
-(287, '2021-12-18 13:29:28', NULL, NULL, '50.00', NULL, NULL, 0, 'clio', 'NÃO INFORMADO', NULL, 0, 10, 42, 27),
-(288, '2021-12-18 13:29:28', NULL, NULL, '30.00', NULL, NULL, 0, 'palio', 'NÃO INFORMADO', NULL, 0, 2, 42, 27),
-(289, '2021-12-18 13:29:28', NULL, NULL, '105.00', NULL, NULL, NULL, 'Alinhamento / balanciamento', 'NÃO INFORMADO', NULL, 0, 15, 42, 27),
-(290, '2021-12-21 14:29:38', '50.00', NULL, NULL, NULL, NULL, 0, 'VERSA', 'NÃO INFORMADO', '', 0, 3, 44, 27),
-(291, '2021-12-21 14:53:27', '25.00', NULL, NULL, NULL, NULL, 0, 'HB20', 'PTC 0038', '', 0, 5, 44, 27),
-(292, '2021-12-21 14:54:41', NULL, '25.00', NULL, NULL, NULL, 0, 'GOL', 'PSA 2455', '', 0, 15, 44, 18),
-(293, '2021-12-21 14:59:00', '75.00', NULL, NULL, NULL, NULL, 0, 'ONIX', 'PSA 2455', '', 0, 10, 44, 27),
-(294, '2021-12-21 19:14:37', NULL, NULL, NULL, '50.00', NULL, 0, 'palio', 'NÃO INFORMADO', 'pago pix loja', 0, 16, 44, 27),
-(295, '2021-12-21 19:50:34', NULL, NULL, NULL, '20.00', NULL, 0, 'HILLUX', 'nkp 8129', 'PAGO PIX LOJA', 0, 11, 44, 25),
-(296, '2021-12-21 20:13:01', NULL, NULL, '25.00', NULL, NULL, 0, 'ARGO', 'NÃO INFORMADO', '', 0, 5, 44, 27),
-(297, '2021-12-21 20:56:30', NULL, NULL, '50.00', NULL, NULL, 0, 'MARCH', 'NÃO INFORMADO', '', 0, 10, 44, 27),
-(298, '2021-12-21 21:10:14', NULL, '125.00', NULL, NULL, NULL, 0, 'STRADA', 'NÃO INFORMADO', '', 0, 3, 44, 27),
-(299, '2021-12-21 21:17:25', '175.00', NULL, NULL, NULL, NULL, 0, 'HILLUX', 'NÃO INFORMADO', '', 0, 2, 44, 27),
-(300, '2021-12-21 21:25:33', NULL, NULL, '150.00', NULL, NULL, 0, 'NENHUM', 'NÃO INFORMADO', '', 0, 14, 44, 15),
-(301, '2021-12-21 21:27:11', NULL, NULL, NULL, '75.00', NULL, 0, 'CELTA', 'NÃO INFORMADO', 'PAGO PIX LOJA', 0, 11, 44, 23),
-(302, '2021-12-21 21:33:42', NULL, NULL, '150.00', NULL, NULL, 0, 'FUSION', 'NÃO INFORMADO', '', 0, 14, 44, 23),
-(303, '2021-12-21 21:43:00', NULL, NULL, NULL, '150.00', NULL, 0, 'HILLUX', 'NÃO INFORMADO', 'PAGO PIX LOJA', 0, 2, 44, 27),
-(304, '2021-12-22 11:36:49', NULL, NULL, NULL, NULL, '25.00', 0, 'SPIN', 'NÃO INFORMADO', 'CLIENTE TRANSFERIU PARA CONTA DE JEFFERSON O PAGAMENTO DA SPIN.', 0, 7, 44, 27),
-(305, '2021-12-22 11:58:14', NULL, '50.00', NULL, NULL, NULL, 0, 'HILLUX ', 'NÃO INFORMADO', '', 0, 2, 45, 18),
-(306, '2021-12-22 14:34:00', NULL, NULL, NULL, '150.00', NULL, 0, 'UNO', 'OPQ 2G59', 'PAGO PIX LOJA', 0, 6, 45, 27),
-(307, '2021-12-22 15:00:06', NULL, '100.00', NULL, NULL, NULL, 0, 'STRADA', 'NÃO INFORMADO', '', 0, 3, 45, 27),
-(308, '2021-12-22 16:40:14', '175.00', NULL, NULL, NULL, NULL, 0, 'SIENA', 'NÃO INFORMADO', '', 0, 15, 44, 27),
-(309, '2021-12-22 16:42:15', '175.00', NULL, NULL, NULL, NULL, 0, 'SIENNA', 'NÃO INFORMADO', '', 0, 15, 45, 27),
-(310, '2021-12-22 17:44:24', '25.00', NULL, NULL, NULL, NULL, 0, 'COROLLA', 'OIS 9191', '', 0, 4, 45, 27),
-(311, '2021-12-22 18:04:06', '25.00', NULL, NULL, NULL, NULL, 0, 'PALIO', 'OXZ 7203', '', 0, 7, 45, 28),
-(312, '2021-12-22 19:48:08', '125.00', NULL, NULL, NULL, NULL, 0, 'SANDERO', 'PSF 4267', '', 0, 15, 45, 27),
-(313, '2021-12-22 20:00:16', NULL, NULL, '50.00', NULL, NULL, 0, 'KIWD', 'PTA 7899', '', 0, 8, 45, 18),
-(314, '2021-12-22 20:04:30', '400.00', '400.00', NULL, NULL, NULL, 0, 'FIESTA', 'NXJ 5105', 'PAGO PIX LOJA', 0, 6, 45, 27),
-(315, '2021-12-22 20:16:16', NULL, '25.00', NULL, NULL, NULL, 0, 'HB20', 'NÃO INFORMADO', '', 0, 8, 45, 18),
-(316, '2021-12-22 20:42:23', '100.00', NULL, NULL, NULL, NULL, 0, 'VERSA', 'OIX 3776', '', 0, 7, 45, 27),
-(317, '2021-12-22 20:44:24', '20.00', NULL, '20.00', NULL, NULL, 0, 'PALIO', 'NÃO INFORMADO', '', 0, 10, 45, 27),
-(318, '2021-12-23 11:41:07', '75.00', NULL, NULL, NULL, NULL, 0, 'LOGAN', 'PSK 4459', '', 0, 15, 46, 27),
-(319, '2021-12-23 13:37:06', '40.00', NULL, NULL, NULL, NULL, 0, 'KIWD', 'ptw 7803', '', 0, 5, 46, 29);
+(322, '2021-12-28 13:45:40', NULL, '100.00', NULL, NULL, NULL, 0, 'vera cruz', 'hot-2020', 'oook', 0, 2, 49, 1),
+(323, '2021-12-28 13:47:29', NULL, '175.00', NULL, NULL, NULL, 0, 'TRACKER', 'hot-2020', 'Pagar comissão hoje', 0, 1, 49, 1),
+(324, '2021-12-28 19:00:46', '400.00', NULL, NULL, NULL, NULL, 0, 'SANDERO', 'how-2528', '', 0, 10, 49, 18),
+(325, '2021-12-28 19:28:01', '400.00', NULL, NULL, NULL, NULL, 0, 'FORD KA', 'how-2528', '', 0, 16, 49, 33);
 
 -- --------------------------------------------------------
 
@@ -964,7 +825,13 @@ INSERT INTO `movimentacoes` (`id`, `data`, `cartao`, `dinheiro`, `debito`, `pix`
 (752, '2021-12-23 13:26:01', '390.00', '0.00', '0.00', '0.00', '0.00', 1, 'COROLLA', 'pip 8f74', '', 1, 26, 46, 15, '0.00'),
 (753, '2021-12-23 13:35:57', '285.00', '0.00', '0.00', '0.00', '0.00', 1, 'GOL', 'NÃO INFORMADO', '', 1, 25, 46, 6, '0.00'),
 (754, '2021-12-23 13:37:06', '500.00', '0.00', '0.00', '0.00', '0.00', 1, 'KIWD', 'ptw 7803', '', 1, 29, 46, 5, '80.00'),
-(755, '2021-12-23 13:51:38', '330.00', '0.00', '0.00', '0.00', '0.00', 1, 'DUSTER', 'NÃO INFORMADO', '', 1, 25, 46, 6, '0.00');
+(755, '2021-12-23 13:51:38', '330.00', '0.00', '0.00', '0.00', '0.00', 1, 'DUSTER', 'NÃO INFORMADO', '', 1, 25, 46, 6, '0.00'),
+(756, '2021-12-28 12:16:27', '0.00', '60.00', '0.00', '0.00', '0.00', 1, 'TUCSON', 'NÃO INFORMADO', '', 1, 15, 50, 8, '0.00'),
+(758, '2021-12-28 13:04:03', '0.00', '300.00', '0.00', '0.00', '0.00', 1, 'vera cruz', 'NÃO INFORMADO', '', 1, 1, 48, 16, '500.00'),
+(759, '2021-12-28 13:45:40', '0.00', '300.00', '0.00', '0.00', '0.00', 1, 'vera cruz', 'hot-2020', 'oook', 1, 1, 49, 2, '200.00'),
+(760, '2021-12-28 13:47:29', '0.00', '700.00', '0.00', '0.00', '0.00', 1, 'TRACKER', 'hot-2020', 'Pagar comissão hoje', 1, 1, 49, 1, '350.00'),
+(761, '2021-12-28 19:00:46', '1500.00', '0.00', '0.00', '0.00', '0.00', 1, 'SANDERO', 'how-2528', '', 1, 18, 49, 10, '800.00'),
+(762, '2021-12-28 19:28:01', '3000.00', '0.00', '0.00', '0.00', '0.00', 1, 'FORD KA', 'how-2528', '', 1, 33, 49, 16, '800.00');
 
 -- --------------------------------------------------------
 
@@ -987,26 +854,7 @@ CREATE TABLE `pagamento` (
 --
 
 INSERT INTO `pagamento` (`id`, `data`, `valor`, `saldo`, `status`, `comentario`, `caixa_id`) VALUES
-(18, '2021-12-01', '0.00', '585.00', 1, '', 28),
-(19, '2021-12-03', '0.00', '1135.00', 1, 'PAGO 390 REAIS NO PIX, HB20.', 29),
-(20, '2021-12-04', '0.00', '565.00', 1, '', 30),
-(21, '2021-12-06', '0.00', '730.00', 1, 'LINK DE PAGAMENTO  DE 360,00', 31),
-(22, '2021-12-07', '0.00', '1110.00', 1, '', 32),
-(26, '2021-12-08', '0.00', '490.00', 1, '', 33),
-(28, '2021-12-09', '0.00', '1055.00', 1, '', 34),
-(30, '2021-12-02', '0.00', '975.00', 1, 'DESCONTADO 150,00 DE VENDA DE UMA PEÇA PASSADA NA MAQUININHA JEFFERSON', 28),
-(31, '2021-12-10', '0.00', '1465.00', 1, '', 35),
-(32, '2021-12-13', '0.00', '660.00', 1, NULL, 36),
-(33, '2021-12-14', '1250.00', '1250.00', 0, '', 37),
-(36, '2021-12-11', '0.00', '1015.00', 1, NULL, 36),
-(37, '2021-12-15', '1470.00', '1470.00', 0, NULL, 39),
-(38, '2021-12-16', '525.00', '525.00', 0, NULL, 40),
-(39, '2021-12-17', '0.00', '615.00', 1, '', 41),
-(40, '2021-12-18', '395.00', '395.00', 0, NULL, 42),
-(41, '2021-12-20', '827.50', '827.50', 0, NULL, 43),
-(42, '2021-12-22', '1395.00', '1395.00', 0, NULL, 44),
-(43, '2021-12-22', '1665.00', '1665.00', 0, NULL, 45),
-(44, '2021-12-23', '115.00', '115.00', 0, NULL, 46);
+(47, '2021-12-28', '1075.00', '1075.00', 0, NULL, 49);
 
 -- --------------------------------------------------------
 
@@ -1141,6 +989,15 @@ ALTER TABLE `catdespesas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `comissao`
+--
+ALTER TABLE `comissao`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comissao_mecanicos1_idx` (`mecanicos_id`),
+  ADD KEY `fk_comissao_caixa1_idx` (`caixa_id`),
+  ADD KEY `fk_comissao_catdespesas1_idx` (`catdespesas_id`);
+
+--
 -- Índices para tabela `extra`
 --
 ALTER TABLE `extra`
@@ -1214,7 +1071,7 @@ ALTER TABLE `acessos`
 -- AUTO_INCREMENT de tabela `caixa`
 --
 ALTER TABLE `caixa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de tabela `cargos`
@@ -1227,6 +1084,12 @@ ALTER TABLE `cargos`
 --
 ALTER TABLE `catdespesas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT de tabela `comissao`
+--
+ALTER TABLE `comissao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `extra`
@@ -1244,7 +1107,7 @@ ALTER TABLE `forma_pagamento`
 -- AUTO_INCREMENT de tabela `maobra`
 --
 ALTER TABLE `maobra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
 
 --
 -- AUTO_INCREMENT de tabela `mecanicos`
@@ -1256,13 +1119,13 @@ ALTER TABLE `mecanicos`
 -- AUTO_INCREMENT de tabela `movimentacoes`
 --
 ALTER TABLE `movimentacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=756;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=763;
 
 --
 -- AUTO_INCREMENT de tabela `pagamento`
 --
 ALTER TABLE `pagamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`
@@ -1281,17 +1144,25 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Limitadores para a tabela `comissao`
+--
+ALTER TABLE `comissao`
+  ADD CONSTRAINT `fk_comissao_caixa1` FOREIGN KEY (`caixa_id`) REFERENCES `caixa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_comissao_catdespesas1` FOREIGN KEY (`catdespesas_id`) REFERENCES `catdespesas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_comissao_mecanicos1` FOREIGN KEY (`mecanicos_id`) REFERENCES `mecanicos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Limitadores para a tabela `maobra`
 --
 ALTER TABLE `maobra`
-  ADD CONSTRAINT `fk_maobra_caixa` FOREIGN KEY (`caixa_id`) REFERENCES `caixa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_maobra_catdespesas1` FOREIGN KEY (`catdespesas_id`) REFERENCES `catdespesas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_maobra_caixa` FOREIGN KEY (`caixa_id`) REFERENCES `caixa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_maobra_catdespesas1` FOREIGN KEY (`catdespesas_id`) REFERENCES `catdespesas` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `pagamento`
 --
 ALTER TABLE `pagamento`
-  ADD CONSTRAINT `fk_pagamento_caixa1` FOREIGN KEY (`caixa_id`) REFERENCES `caixa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_pagamento_caixa1` FOREIGN KEY (`caixa_id`) REFERENCES `caixa` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `servicos`

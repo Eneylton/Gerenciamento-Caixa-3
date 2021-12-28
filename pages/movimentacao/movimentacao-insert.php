@@ -2,6 +2,7 @@
 
 require __DIR__.'../../../vendor/autoload.php';
 
+use App\Entidy\Comissao;
 use App\Entidy\Maobra;
 use App\Session\Login;
 use App\Entidy\Movimentacao;
@@ -17,6 +18,8 @@ $usuariologado = Login:: getUsuarioLogado();
 $usuarios_id = $usuariologado['id'];
 
 $saldo = 0;
+$valor_comissao = 0;
+$porcentagem = 10;
 
 Login::requireLogin();
 
@@ -55,10 +58,33 @@ if(isset($_POST['idcaixa'])){
       $mec = $_POST['mecanicos_id'];
     }
 
-
-    if(!empty($_POST['maobra'])){
-
       $valor = ($maobra5 / 2);
+
+      if(!empty($_POST['maobra'])){
+
+        if($mec != 14){
+
+          $valor_comissao = $valor * ($porcentagem / 100);
+        
+          $comissao = new Comissao;
+        
+          $comissao->caixa_id = $_POST['idcaixa'];
+          $comissao->veiculo = $_POST['veiculo'];
+          $comissao->placa = $_POST['placa'];
+          $comissao->descricao = $_POST['descricao'];
+          $comissao->mecanicos_id = $mec;
+          $comissao->catdespesas_id = $_POST['catdespesas_id'];
+          $comissao->status = 0;
+          $comissao->tipo = 0;
+          $comissao->valor = $valor_comissao;
+          $comissao->cadastar();
+          
+        }else{
+  
+          header('location: movimentacao-list.php?id='.$_POST['idcaixa'].'&status=comissao');
+          exit;
+  
+        }
 
       if( $_POST['dinheiro'] && $_POST['credito']){
 

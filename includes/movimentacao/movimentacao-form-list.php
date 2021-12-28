@@ -1,5 +1,52 @@
 <?php
 
+if (isset($_GET['status'])) {
+
+   switch ($_GET['status']) {
+      case 'success':
+         $icon  = 'success';
+         $title = 'Parabéns';
+         $text = 'Cadastro realizado com Sucesso !!!';
+         break;
+
+         case 'comissao':
+            $icon  = 'error';
+            $title = 'ATENÇÃO - ALGO DEU ERRADO';
+            $text = 'VOCÊ PRECISA ADICIONAR UM MECÂNICO !!!';
+            break;
+
+            case 'edit':
+               $icon  = 'warning';
+               $title = 'Parabéns';
+               $text = 'Cadastro atualizado com sucesso !!!';
+               break;
+   
+
+      default:
+         $icon  = 'error';
+         $title = 'Opss !!!';
+         $text = 'Algo deu errado entre em contato com admin !!!';
+         break;
+   }
+
+   function alerta($icon, $title, $text)
+   {
+      echo "<script type='text/javascript'>
+      Swal.fire({
+        type:'type',  
+        icon: '$icon',
+        title: '$title',
+        text: '$text'
+       
+      }) 
+      </script>";
+   }
+
+   alerta($icon, $title, $text);
+
+}
+
+
 $total_dinheiro = 0;
 $total_credito = 0;
 $total_debito = 0;
